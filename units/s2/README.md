@@ -1,4 +1,6 @@
-# Stage 2 · Agent 核心（W7–W10，80 小时）
+# Stage 2 · Agent 核心（W8–W11，80 小时）
+
+**开始前先做**：在 `s2-agent/pyproject.toml` 里声明对 S1 的依赖（`dependencies = ["llm-kit"]` 加 `[tool.uv.sources] llm-kit = { workspace = true }`），然后 `uv sync`。验证 `from llm_kit import LLM` 能 import。详见 [`项目结构.md`](../../项目结构.md)。
 
 **开始前先确认**：`s2-agent/PROJECT.md` 里的主线项目选题已经定下来了（U1.8 的产出）。后面四个阶段全部围绕它。
 

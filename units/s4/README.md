@@ -1,4 +1,4 @@
-# Stage 4 · 生产化（W15–W18，80 小时）
+# Stage 4 · 生产化（W16–W19，80 小时）
 
 **目标**：让 M2 的 Agent 从「我能跑」变成「别人在用，出事我知道，改坏能回滚」。
 
@@ -25,7 +25,7 @@
 
 - [humanlayer/12-factor-agents](https://github.com/humanlayer/12-factor-agents)（2.6 万 star）。**注意最后更新是 2025 年 9 月，按原则读、别按代码抄。**
 - Anthropic《[Effective harnesses for long-running agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents)》（2025-11-26）
-- Anthropic《[Beyond permission prompts](https://www.anthropic.com/engineering/beyond-permission-prompts)》（2025-10-20）
+- Anthropic《[Beyond permission prompts](https://www.anthropic.com/engineering/claude-code-sandboxing)》（2025-10-20）
 - Anthropic《[How we built Claude Code auto mode](https://www.anthropic.com/engineering/claude-code-auto-mode)》（2026-03-25）
 - [OWASP GenAI Security Project](https://genai.owasp.org)
 

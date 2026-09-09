@@ -1,16 +1,18 @@
 # AI Agent 系统学习计划（零代码基础 → 生产级）
 
-> 版本：2026-09-09 · 周期 26 周 · 每周 20 小时 · 总投入约 520 小时
+> 版本：2026-09-09 · 周期 27 周 · 每周 20 小时 · 总投入约 532 小时
 > 飞书文档：https://dcnxpg5pruao.feishu.cn/docx/HEKGdkG7EofGpgx3NwScJt70nbf
 > 目标：独立做 Agent 应用 + 看懂并参与 Agent 平台基建 + 能在业务里落地 + 能拿去面试 + 顺带能做网站/App/小程序
 
 **第一次打开？先读 [`从这里开始.md`](从这里开始.md)**（[飞书版](https://dcnxpg5pruao.feishu.cn/docx/JgSPd46vBobhH7xBLZkcYQvZnwb)）—— VS Code 配置、每个单元的固定五步、前三天的具体清单。
 
+**七个阶段的项目怎么互相引用？** 见 [`项目结构.md`](项目结构.md) —— uv workspace、跨阶段依赖、csvstats 怎么承接。
+
 **每个单元的详细拆解在 [`units/`](units/) 目录**，本文件是总览和索引。
 
 | 阶段 | 本地文档 | 飞书 |
 |---|---|---|
-| **S0 工程地基** | [units/s0/](units/s0/README.md) · 9 个单元 | [打开](https://dcnxpg5pruao.feishu.cn/docx/Cz1tdfwWQoE2e3xdAwTcd4gMntc) |
+| **S0 工程地基** | [units/s0/](units/s0/README.md) · 10 个单元 | [打开](https://dcnxpg5pruao.feishu.cn/docx/Cz1tdfwWQoE2e3xdAwTcd4gMntc) |
 | **S1 LLM 基础与上下文工程** | [units/s1/](units/s1/README.md) · 8 个单元 | [打开](https://dcnxpg5pruao.feishu.cn/docx/XNhHdGuluooLYIxW77icPDObnPH) |
 | **S2 Agent 核心** | [units/s2/](units/s2/README.md) · 8 个单元 | [打开](https://dcnxpg5pruao.feishu.cn/docx/LhQEdf8bao3QscxBV5bcf3YEnKg) |
 | **S3 评估与可观测性** | [units/s3/](units/s3/README.md) · 8 个单元 | [打开](https://dcnxpg5pruao.feishu.cn/docx/KtPTdlMMLoryUCx92rLc8IYxnjd) |
@@ -35,6 +37,7 @@
 ```
 ai-agent-roadmap/
 ├── README.md          # 本文件
+├── 项目结构.md        # 七个阶段怎么串起来（S1 开始前必读）
 ├── 从这里开始.md      # 上手指南，第一次打开先读这个
 ├── templates/         # 单元笔记与周复盘模板
 ├── .vscode/           # VS Code 插件与设置
@@ -58,13 +61,13 @@ ai-agent-roadmap/
 
 | 阶段 | 主题 | 周次 | 时长 | 里程碑产出 |
 |---|---|---|---|---|
-| S0 | 工程地基 | W1–W3 | 60h | M0 带测试和 Docker 的 REST API |
-| S1 | LLM 基础与上下文工程 | W4–W6 | 60h | M1 命令行 LLM 工具 |
-| S2 | Agent 核心 | W7–W10 | 80h | M2 你自己场景的可用 Agent |
-| S3 | 评估与可观测性 | W11–W14 | 80h | M3 给 M2 建完整 eval 与 trace |
-| S4 | 生产化 | W15–W18 | 80h | M4 M2 真正上线，带灰度和 SLO |
-| S5 | 产品外壳 | W19–W22 | 80h | M5 Web 前端 + 小程序入口 |
-| S6 | 平台与基建 | W23–W26 | 80h | M6 mini agent runtime + 作品集 |
+| S0 | 工程地基 | W1–W4 | 72h | M0 带测试和 Docker 的 REST API |
+| S1 | LLM 基础与上下文工程 | W5–W7 | 60h | M1 命令行 LLM 工具 |
+| S2 | Agent 核心 | W8–W11 | 80h | M2 你自己场景的可用 Agent |
+| S3 | 评估与可观测性 | W12–W15 | 80h | M3 给 M2 建完整 eval 与 trace |
+| S4 | 生产化 | W16–W19 | 80h | M4 M2 真正上线，带灰度和 SLO |
+| S5 | 产品外壳 | W20–W23 | 80h | M5 Web 前端 + 小程序入口 |
+| S6 | 平台与基建 | W24–W27 | 80h | M6 mini agent runtime + 作品集 |
 
 一条主线贯穿全程：**S2 做出来的那个 Agent，S3 给它建评估，S4 让它上线，S5 给它做界面，S6 把它的运行时拆开重写一遍。** 六个里程碑不是六个玩具，是同一个东西的六次升级。
 
@@ -174,8 +177,8 @@ S2 前两周不用任何框架，自己写 ReAct 循环——不这样做，你�
 | [Code execution with MCP](https://www.anthropic.com/engineering/code-execution-with-mcp) | 2025-11-04 | U2.7 |
 | [Demystifying evals for AI agents](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents) | 2026-01-09 | **S3 整个阶段的方法论基础** |
 | [Effective harnesses for long-running agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents) | 2025-11-26 | S4 |
-| [Beyond permission prompts](https://www.anthropic.com/engineering/beyond-permission-prompts) | 2025-10-20 | U4.4 |
-| [Harness design for long-running application development](https://www.anthropic.com/engineering/harness-design-for-long-running-application-development) | 2026-03-24 | S4 |
+| [Beyond permission prompts](https://www.anthropic.com/engineering/claude-code-sandboxing) | 2025-10-20 | U4.4 |
+| [Harness design for long-running application development](https://www.anthropic.com/engineering/harness-design-long-running-apps) | 2026-03-24 | S4 |
 
 完整列表见 [anthropic.com/engineering](https://www.anthropic.com/engineering)，每月看一次新增。
 
@@ -220,30 +223,31 @@ S2 前两周不用任何框架，自己写 ReAct 循环——不这样做，你�
 |---|---|---|---|---|---|
 | W1 | S0 | U0.1 U0.2 U0.3 |  |  |  |
 | W2 | S0 | U0.4 U0.5 U0.6 |  |  |  |
-| W3 | S0 | U0.7 U0.8 U0.9 M0 |  |  |  |
-| W4 | S1 | U1.1 U1.2 U1.3 |  |  |  |
-| W5 | S1 | U1.4 U1.5 |  |  |  |
-| W6 | S1 | U1.6 U1.7 U1.8 M1 |  |  |  |
-| W7 | S2 | U2.1 U2.2 |  |  |  |
-| W8 | S2 | U2.3 U2.4 |  |  |  |
-| W9 | S2 | U2.5 U2.6 |  |  |  |
-| W10 | S2 | U2.7 U2.8 M2 |  |  |  |
-| W11 | S3 | U3.1 U3.2 U3.3 |  |  |  |
-| W12 | S3 | U3.4 U3.5 |  |  |  |
-| W13 | S3 | U3.6 U3.7 |  |  |  |
-| W14 | S3 | U3.8 M3 |  |  |  |
-| W15 | S4 | U4.1 U4.2 |  |  |  |
-| W16 | S4 | U4.3 U4.4 |  |  |  |
-| W17 | S4 | U4.5 U4.6 |  |  |  |
-| W18 | S4 | U4.7 U4.8 M4 |  |  |  |
-| W19 | S5 | U5.1 U5.2 |  |  |  |
-| W20 | S5 | U5.3 U5.4 |  |  |  |
-| W21 | S5 | U5.5 U5.6 |  |  |  |
-| W22 | S5 | U5.7 M5 |  |  |  |
-| W23 | S6 | U6.1 U6.2 |  |  |  |
-| W24 | S6 | U6.3 U6.4 |  |  |  |
-| W25 | S6 | U6.5 |  |  |  |
-| W26 | S6 | U6.6 M6 |  |  |  |
+| W3 | S0 | U0.7 U0.8 U0.9 |  |  |  |
+| W4 | S0 | U0.10 M0 |  |  |  |
+| W5 | S1 | U1.1 U1.2 U1.3 |  |  |  |
+| W6 | S1 | U1.4 U1.5 |  |  |  |
+| W7 | S1 | U1.6 U1.7 U1.8 M1 |  |  |  |
+| W8 | S2 | U2.1 U2.2 |  |  |  |
+| W9 | S2 | U2.3 U2.4 |  |  |  |
+| W10 | S2 | U2.5 U2.6 |  |  |  |
+| W11 | S2 | U2.7 U2.8 M2 |  |  |  |
+| W12 | S3 | U3.1 U3.2 U3.3 |  |  |  |
+| W13 | S3 | U3.4 U3.5 |  |  |  |
+| W14 | S3 | U3.6 U3.7 |  |  |  |
+| W15 | S3 | U3.8 M3 |  |  |  |
+| W16 | S4 | U4.1 U4.2 |  |  |  |
+| W17 | S4 | U4.3 U4.4 |  |  |  |
+| W18 | S4 | U4.5 U4.6 |  |  |  |
+| W19 | S4 | U4.7 U4.8 M4 |  |  |  |
+| W20 | S5 | U5.1 U5.2 |  |  |  |
+| W21 | S5 | U5.3 U5.4 |  |  |  |
+| W22 | S5 | U5.5 U5.6 |  |  |  |
+| W23 | S5 | U5.7 M5 |  |  |  |
+| W24 | S6 | U6.1 U6.2 |  |  |  |
+| W25 | S6 | U6.3 U6.4 |  |  |  |
+| W26 | S6 | U6.5 |  |  |  |
+| W27 | S6 | U6.6 M6 |  |  |  |
 
 ---
 
