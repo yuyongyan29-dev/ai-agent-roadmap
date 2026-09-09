@@ -16,7 +16,7 @@
 | **S3 评估与可观测性**（已细化到教程级） | [units/s3/](units/s3/README.md) · 8 个单元独立成篇 | 待同步 |
 | **S4 生产化**（已细化到教程级） | [units/s4/](units/s4/README.md) · 8 个单元独立成篇 | 待同步 |
 | **S5 产品外壳**（已细化到教程级） | [units/s5/](units/s5/README.md) · 7 个单元独立成篇 | 待同步 |
-| S6 平台基建与面试 | [units/s6-平台基建与面试.md](units/s6-平台基建与面试.md) | [打开](https://dcnxpg5pruao.feishu.cn/docx/WbomdNmbbo7eQNxv97WctQYLnsb) |
+| **S6 平台基建与面试**（已细化到教程级） | [units/s6/](units/s6/README.md) · 6 个单元独立成篇 | 待同步 |
 
 ---
 
@@ -41,8 +41,7 @@ ai-agent-roadmap/
 ├── units/
 │   ├── s0/            # 9 个单元，教程级细度
 │   ├── s1/            # 8 个单元，教程级细度
-│   ├── s2/ s3/ s4/ s5/  # 教程级细度
-│   └── s6..md           # 待细化
+│   └── s0/ … s6/      # 54 个单元，每个一个文件
 ├── logs/              # 每周复盘
 ├── s0-foundation/     # 各阶段代码
 ├── s1-llm/
