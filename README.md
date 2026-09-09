@@ -4,17 +4,19 @@
 > 飞书文档：https://dcnxpg5pruao.feishu.cn/docx/HEKGdkG7EofGpgx3NwScJt70nbf
 > 目标：独立做 Agent 应用 + 看懂并参与 Agent 平台基建 + 能在业务里落地 + 能拿去面试 + 顺带能做网站/App/小程序
 
+**第一次打开？先读 [`从这里开始.md`](从这里开始.md)**（[飞书版](https://dcnxpg5pruao.feishu.cn/docx/JgSPd46vBobhH7xBLZkcYQvZnwb)）—— VS Code 配置、每个单元的固定五步、前三天的具体清单。
+
 **每个单元的详细拆解在 [`units/`](units/) 目录**，本文件是总览和索引。
 
-| 阶段 | 详细文档 |
-|---|---|
-| S0 工程地基 | [units/s0-工程地基.md](units/s0-工程地基.md) |
-| S1 LLM 基础与上下文工程 | [units/s1-LLM基础与上下文工程.md](units/s1-LLM基础与上下文工程.md) |
-| S2 Agent 核心 | [units/s2-Agent核心.md](units/s2-Agent核心.md) |
-| S3 评估与可观测性 | [units/s3-评估与可观测性.md](units/s3-评估与可观测性.md) |
-| S4 生产化 | [units/s4-生产化.md](units/s4-生产化.md) |
-| S5 产品外壳 | [units/s5-产品外壳.md](units/s5-产品外壳.md) |
-| S6 平台基建与面试 | [units/s6-平台基建与面试.md](units/s6-平台基建与面试.md) |
+| 阶段 | 本地文档 | 飞书 |
+|---|---|---|
+| S0 工程地基 | [units/s0-工程地基.md](units/s0-工程地基.md) | [打开](https://dcnxpg5pruao.feishu.cn/docx/PeEcdCPrUogtRxxM9sYcbBLbnsd) |
+| S1 LLM 基础与上下文工程 | [units/s1-LLM基础与上下文工程.md](units/s1-LLM基础与上下文工程.md) | [打开](https://dcnxpg5pruao.feishu.cn/docx/KEasd8eeIoABqNxT9WTcMyIwnAe) |
+| S2 Agent 核心 | [units/s2-Agent核心.md](units/s2-Agent核心.md) | [打开](https://dcnxpg5pruao.feishu.cn/docx/EW8mdQGhAoMyS2xqcO2cm18Qnxf) |
+| S3 评估与可观测性 | [units/s3-评估与可观测性.md](units/s3-评估与可观测性.md) | [打开](https://dcnxpg5pruao.feishu.cn/docx/ZggndoxVHoiUsSx4r33cPIr6nJg) |
+| S4 生产化 | [units/s4-生产化.md](units/s4-生产化.md) | [打开](https://dcnxpg5pruao.feishu.cn/docx/DG2Xdr7lqosKixxFUIBcXlwOnWb) |
+| S5 产品外壳 | [units/s5-产品外壳.md](units/s5-产品外壳.md) | [打开](https://dcnxpg5pruao.feishu.cn/docx/EK9tdBy6RogwNDxzyaqcHptTnmc) |
+| S6 平台基建与面试 | [units/s6-平台基建与面试.md](units/s6-平台基建与面试.md) | [打开](https://dcnxpg5pruao.feishu.cn/docx/WbomdNmbbo7eQNxv97WctQYLnsb) |
 
 ---
 
@@ -33,6 +35,9 @@
 ```
 ai-agent-roadmap/
 ├── README.md          # 本文件
+├── 从这里开始.md      # 上手指南，第一次打开先读这个
+├── templates/         # 单元笔记与周复盘模板
+├── .vscode/           # VS Code 插件与设置
 ├── units/             # 每个单元的详细拆解
 ├── logs/              # 每周复盘
 ├── s0-foundation/     # 各阶段代码
