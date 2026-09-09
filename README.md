@@ -6,7 +6,7 @@
 
 **第一次打开？先读 [`从这里开始.md`](从这里开始.md)**（[飞书版](https://dcnxpg5pruao.feishu.cn/docx/JgSPd46vBobhH7xBLZkcYQvZnwb)）—— VS Code 配置、每个单元的固定五步、前三天的具体清单。
 
-**七个阶段的项目怎么互相引用？** 见 [`项目结构.md`](项目结构.md) —— uv workspace、跨阶段依赖、csvstats 怎么承接。
+**七个阶段的项目怎么互相引用？** 见 [`项目结构.md`](项目结构.md)（[飞书版](https://dcnxpg5pruao.feishu.cn/docx/RyY1dimYxonwLWxiFAMccaRPnwe)）—— uv workspace、跨阶段依赖、csvstats 怎么承接。
 
 **每个单元的详细拆解在 [`units/`](units/) 目录**，本文件是总览和索引。
 
