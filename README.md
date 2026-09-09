@@ -14,7 +14,7 @@
 | **S1 LLM 基础与上下文工程**（已细化到教程级） | [units/s1/](units/s1/README.md) · 8 个单元独立成篇 | 待同步 |
 | **S2 Agent 核心**（已细化到教程级） | [units/s2/](units/s2/README.md) · 8 个单元独立成篇 | 待同步 |
 | **S3 评估与可观测性**（已细化到教程级） | [units/s3/](units/s3/README.md) · 8 个单元独立成篇 | 待同步 |
-| S4 生产化 | [units/s4-生产化.md](units/s4-生产化.md) | [打开](https://dcnxpg5pruao.feishu.cn/docx/DG2Xdr7lqosKixxFUIBcXlwOnWb) |
+| **S4 生产化**（已细化到教程级） | [units/s4/](units/s4/README.md) · 8 个单元独立成篇 | 待同步 |
 | S5 产品外壳 | [units/s5-产品外壳.md](units/s5-产品外壳.md) | [打开](https://dcnxpg5pruao.feishu.cn/docx/EK9tdBy6RogwNDxzyaqcHptTnmc) |
 | S6 平台基建与面试 | [units/s6-平台基建与面试.md](units/s6-平台基建与面试.md) | [打开](https://dcnxpg5pruao.feishu.cn/docx/WbomdNmbbo7eQNxv97WctQYLnsb) |
 
@@ -41,8 +41,8 @@ ai-agent-roadmap/
 ├── units/
 │   ├── s0/            # 9 个单元，教程级细度
 │   ├── s1/            # 8 个单元，教程级细度
-│   ├── s2/ s3/        # 各 8 个单元，教程级细度
-│   └── s4..s6.md      # 待细化
+│   ├── s2/ s3/ s4/    # 各 8 个单元，教程级细度
+│   └── s5..s6.md      # 待细化
 ├── logs/              # 每周复盘
 ├── s0-foundation/     # 各阶段代码
 ├── s1-llm/
