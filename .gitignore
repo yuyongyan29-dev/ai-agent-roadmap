@@ -8,3 +8,5 @@ venv/
 node_modules/
 .idea/
 .vscode/
+_c_*.md
+_fs_*.md
