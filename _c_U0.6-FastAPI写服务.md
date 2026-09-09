@@ -1,0 +1,536 @@
+# U0.6 · FastAPI 写服务（8 小时）
+
+**这个单元解决什么问题**
+
+到现在为止，你写的代码只有你自己在终端里能跑。这个单元让它变成一个**服务**：跑在那里等着，别人（网页、手机、其他程序）通过网络调用它。
+
+你的 Agent 最终就是这样被用起来的。S5 的网页前端、小程序，调的都是你这里写的这种接口。
+
+**学完你能做到**：把任何 Python 功能变成 HTTP 接口，带参数校验和自动文档。
+
+---
+
+## 步骤 1 · 跑起来第一个服务
+
+### 这一步在做什么
+
+三分钟内看到一个能访问的网址。
+
+### 怎么做
+
+```bash
+cd s0-foundation/csvstats
+uv add fastapi uvicorn
+```
+
+建 `src/csvstats/api.py`：
+
+```python
+from fastapi import FastAPI
+
+app = FastAPI(title="CSV 统计服务")
+
+
+@app.get("/health")
+def health() -> dict[str, str]:
+    return {"status": "ok"}
+```
+
+启动：
+
+```bash
+uv run uvicorn csvstats.api:app --reload
+```
+
+看到：
+
+```
+INFO:     Uvicorn running on http://127.0.0.1:8000
+INFO:     Application startup complete.
+```
+
+打开浏览器访问 http://127.0.0.1:8000/health，看到 `{"status":"ok"}`。
+
+**然后访问 http://127.0.0.1:8000/docs** —— 这是自动生成的交互式文档，你可以直接在页面上点「Try it out」调用接口。
+
+### 拆解那条启动命令
+
+```
+uv run uvicorn csvstats.api:app --reload
+        ↑       ↑          ↑    ↑
+        |       |          |    代码改了自动重启（只在开发时用）
+        |       |          FastAPI 实例的变量名
+        |       模块路径
+        ASGI 服务器
+```
+
+**FastAPI 和 uvicorn 是两个东西**，新手常搞混：
+
+- **FastAPI** 是框架，负责「收到请求后怎么处理」
+- **uvicorn** 是服务器，负责「监听端口、收发网络数据」
+
+FastAPI 自己不会监听端口，必须由 uvicorn 这类服务器来跑它。
+
+### 可能卡在哪
+
+**`Address already in use`**
+
+8000 端口被占用了。要么换端口 `--port 8001`，要么找出占用的进程：
+
+```bash
+lsof -i :8000
+kill -9 那个PID
+```
+
+**改了代码没生效**
+
+确认加了 `--reload`。或者看终端有没有报语法错误——有错时 reload 会失败，但服务还跑着旧代码。
+
+**浏览器打不开**
+
+- 确认服务真的在跑（终端里有 `Application startup complete`）
+- 用 `127.0.0.1` 而不是 `0.0.0.0`。`0.0.0.0` 是「监听所有网卡」的意思，不是一个能访问的地址
+
+**`ModuleNotFoundError: No module named 'csvstats'`**
+
+先 `uv sync`，把你的项目装进虚拟环境。
+
+### 背后的逻辑
+
+**`/docs` 那个页面是怎么来的？**
+
+FastAPI 读取你函数的**类型注解**，自动生成一份 OpenAPI 规范（一个描述 API 的 JSON），再用 Swagger UI 渲染成页面。
+
+访问 http://127.0.0.1:8000/openapi.json 能看到那份原始规范。
+
+这就是 U0.4 学类型注解的回报之一：**你写注解，框架帮你生成文档、校验参数、生成客户端代码。** 注解不再只是给编辑器看的提示，它变成了真正干活的东西。
+
+---
+
+## 步骤 2 · 路径参数、查询参数、请求体
+
+### 这一步在做什么
+
+学会接收前端传来的三种数据。
+
+### 三种传参方式
+
+```python
+from pydantic import BaseModel
+
+
+# 1. 路径参数：数据在 URL 路径里
+@app.get("/items/{item_id}")
+def 取一个(item_id: int) -> dict:
+    return {"id": item_id}
+# 访问 /items/42  →  item_id = 42（自动转成 int）
+
+
+# 2. 查询参数：数据在 URL 问号后面
+@app.get("/items")
+def 列表(skip: int = 0, limit: int = 10, q: str | None = None) -> dict:
+    return {"skip": skip, "limit": limit, "q": q}
+# 访问 /items?skip=0&limit=5&q=测试
+
+
+# 3. 请求体：数据在 POST 的 body 里
+class 新建请求(BaseModel):
+    名字: str
+    数量: int = 1
+
+@app.post("/items")
+def 新建(payload: 新建请求) -> dict:
+    return {"收到": payload.名字, "数量": payload.数量}
+```
+
+### FastAPI 怎么区分这三种
+
+规则很简单：
+
+1. 参数名出现在路径的 `{}` 里 → **路径参数**
+2. 参数类型是 Pydantic 模型 → **请求体**
+3. 其余的简单类型 → **查询参数**
+
+### 校验是自动的
+
+```python
+@app.get("/items/{item_id}")
+def 取一个(item_id: int) -> dict: ...
+```
+
+访问 `/items/abc`，FastAPI 直接返回 422：
+
+```json
+{
+  "detail": [{
+    "loc": ["path", "item_id"],
+    "msg": "Input should be a valid integer",
+    "type": "int_parsing"
+  }]
+}
+```
+
+**你一行校验代码都没写。** 这是类型注解 + Pydantic 的力量。
+
+### 更细的约束
+
+```python
+from fastapi import Query, Path
+from typing import Annotated
+
+@app.get("/items")
+def 列表(
+    limit: Annotated[int, Query(ge=1, le=100)] = 10,
+    q: Annotated[str | None, Query(min_length=2, max_length=50)] = None,
+) -> dict: ...
+```
+
+### 可能卡在哪
+
+**422 Unprocessable Entity**
+
+**这是 FastAPI 最常见的错误码**，意思是「你传的数据不符合我声明的类型」。
+
+看响应体里的 `detail`，它会精确告诉你哪个字段、什么问题。`loc` 字段说明位置：`["body", "数量"]` 表示请求体里的「数量」字段。
+
+**路由顺序导致的诡异问题**
+
+```python
+@app.get("/items/{item_id}")
+def 取一个(item_id: int): ...
+
+@app.get("/items/latest")      # 永远不会被调用！
+def 最新(): ...
+```
+
+FastAPI 按定义顺序匹配。`/items/latest` 会先匹配上 `/items/{item_id}`，然后因为 `latest` 不是 int 而报 422。
+
+**规则：固定路径要写在动态路径前面。**
+
+**POST 请求体传不进去**
+
+用 `/docs` 页面测试最方便。用 curl 的话注意 `Content-Type`：
+
+```bash
+curl -X POST http://127.0.0.1:8000/items \
+  -H "Content-Type: application/json" \
+  -d '{"名字":"测试","数量":3}'
+```
+
+### 背后的逻辑
+
+**为什么校验错误是 422 而不是 400？**
+
+400 的语义是「请求本身格式就不对」（比如 JSON 语法错），422 的语义是「格式对，但内容不符合语义要求」。
+
+FastAPI 严格区分这两者。这个区分对客户端有实际价值：400 说明代码写错了，422 说明用户填错了，前端应该给出不同的提示。
+
+---
+
+## 步骤 3 · 响应模型与错误处理
+
+### 这一步在做什么
+
+控制「返回给客户端什么」，以及「出错时返回什么」。
+
+### 响应模型
+
+```python
+class 用户输出(BaseModel):
+    id: int
+    名字: str
+    # 注意：没有 密码 字段
+
+
+@app.get("/users/{uid}", response_model=用户输出)
+def 取用户(uid: int):
+    return {"id": uid, "名字": "小王", "密码": "秘密"}
+    # 密码会被自动过滤掉，不会返回给客户端
+```
+
+**`response_model` 不只是文档，它会真的过滤输出。** 这是一道安全防线——防止你不小心把内部字段泄露出去。
+
+**在 Agent 项目里这一点很重要**：模型返回的对象里可能带着系统提示、内部推理、其他用户的数据，你必须显式声明「只返回这几个字段」。
+
+### 错误处理
+
+```python
+from fastapi import HTTPException
+
+@app.get("/users/{uid}")
+def 取用户(uid: int):
+    用户 = 数据库查(uid)
+    if 用户 is None:
+        raise HTTPException(status_code=404, detail="用户不存在")
+    return 用户
+```
+
+**统一处理自定义异常**：
+
+```python
+from fastapi import Request
+from fastapi.responses import JSONResponse
+
+class 业务错误(Exception):
+    def __init__(self, 码: str, 说明: str):
+        self.码 = 码
+        self.说明 = 说明
+
+
+@app.exception_handler(业务错误)
+async def 处理业务错误(request: Request, exc: 业务错误):
+    return JSONResponse(
+        status_code=400,
+        content={"错误码": exc.码, "说明": exc.说明},
+    )
+```
+
+这样你在任何地方 `raise 业务错误("余额不足", "请充值")`，都会得到统一格式的响应。
+
+### 可能卡在哪
+
+**返回的字段和我想的不一样**
+
+检查 `response_model`。它会**过滤掉**模型里没声明的字段，也会因为**缺少**必填字段而报服务器内部错误。
+
+**500 Internal Server Error，但看不到原因**
+
+去终端看，完整的 traceback 打印在那里。生产环境要用 logging 把它记下来。
+
+**返回时间对象报 `not JSON serializable`**
+
+Python 的 `datetime` 不能直接转 JSON。用 Pydantic 模型声明为 `datetime` 类型，它会自动序列化成 ISO 字符串。
+
+### 背后的逻辑
+
+「**声明式**」是 FastAPI 的核心思想。
+
+你不写「检查 uid 是不是整数」的代码，你只是**声明** `uid: int`；你不写「过滤掉密码字段」的代码，你只是**声明** `response_model=用户输出`。
+
+框架读取你的声明并执行。这带来的好处是：声明同时充当了文档、校验规则和类型提示，三者永远不会不一致——因为它们是同一个东西。
+
+**这个思路你在 S2 定义 Agent 工具时会再次用到**：你声明工具的参数结构，框架把它转成给模型看的 JSON schema，模型按 schema 生成参数，框架再按 schema 校验。同一份声明，三处使用。
+
+---
+
+## 步骤 4 · 依赖注入
+
+### 这一步在做什么
+
+把「每个接口都要做的事」抽出来，不重复写。
+
+### 问题长什么样
+
+```python
+@app.get("/a")
+def a(token: str):
+    用户 = 验证token(token)
+    if not 用户: raise HTTPException(401)
+    ...
+
+@app.get("/b")
+def b(token: str):
+    用户 = 验证token(token)      # 重复
+    if not 用户: raise HTTPException(401)
+    ...
+```
+
+### 解法
+
+```python
+from fastapi import Depends
+from typing import Annotated
+
+
+def 当前用户(token: str) -> str:
+    用户 = 验证token(token)
+    if not 用户:
+        raise HTTPException(status_code=401, detail="未认证")
+    return 用户
+
+
+@app.get("/a")
+def a(用户: Annotated[str, Depends(当前用户)]):
+    return {"用户": 用户}          # 到这里 用户 一定是有效的
+
+
+@app.get("/b")
+def b(用户: Annotated[str, Depends(当前用户)]):
+    return {"用户": 用户}
+```
+
+FastAPI 会先执行 `当前用户`，把结果传进来。**如果它抛异常，你的函数根本不会被调用。**
+
+### 带清理的依赖
+
+```python
+def 数据库会话():
+    会话 = 建立连接()
+    try:
+        yield 会话          # 把它交给接口函数用
+    finally:
+        会话.close()        # 接口执行完（无论成功失败）自动关闭
+
+
+@app.get("/items")
+def 列表(db: Annotated[Session, Depends(数据库会话)]):
+    return db.query(...)
+```
+
+**这就是 U0.3 学的 `with` 的同一个思路**：进入时准备，退出时清理，异常也保证清理。
+
+### 可能卡在哪
+
+**依赖没被调用**
+
+检查是不是漏了 `Depends()`。写 `用户: str = 当前用户` 是不行的，必须 `Depends(当前用户)`。
+
+**依赖里的异常怎么办**
+
+直接 raise `HTTPException` 就行，FastAPI 会正确返回给客户端。
+
+### 背后的逻辑
+
+依赖注入解决的是「**关注点分离**」：接口函数只关心业务逻辑，认证、数据库连接、配置读取这些横切关注点由依赖处理。
+
+好处在测试时特别明显——你可以在测试里替换掉依赖：
+
+```python
+app.dependency_overrides[数据库会话] = 假的数据库会话
+```
+
+不用改一行业务代码，就能让接口用测试数据库跑。U0.7 会用到这个。
+
+---
+
+## 步骤 5 · 异步
+
+### 这一步在做什么
+
+**这是本单元最重要也最难的概念。** 你后面所有的 Agent 代码都是异步的，这里必须搞懂。
+
+### 问题长什么样
+
+假设你的接口要调大模型，耗时 20 秒：
+
+**同步版本**：服务器处理这个请求时，整个进程卡在那里等 20 秒。这期间来的其他请求全部排队。10 个用户同时访问，最后一个要等 200 秒。
+
+**异步版本**：等待模型响应时，服务器去处理别的请求。10 个用户几乎同时拿到结果。
+
+### 怎么写
+
+```python
+import httpx
+
+# 同步：会阻塞
+@app.get("/sync")
+def 同步版():
+    r = httpx.get("https://api.example.com/slow")
+    return r.json()
+
+# 异步：不阻塞
+@app.get("/async")
+async def 异步版():
+    async with httpx.AsyncClient() as client:
+        r = await client.get("https://api.example.com/slow")
+    return r.json()
+```
+
+三个关键字：
+
+| 关键字 | 含义 |
+|---|---|
+| `async def` | 声明这是一个协程函数，里面可以用 `await` |
+| `await` | **「这里要等，等的时候让出控制权去干别的」** |
+| `async with` | 异步版本的 with |
+
+### 什么时候该用 async
+
+判断标准只有一条：**这个操作是在等外部，还是在算东西？**
+
+| 操作 | 类型 | 该用 |
+|---|---|---|
+| 调 HTTP API | 等网络 | `async` |
+| 读写数据库 | 等磁盘/网络 | `async` |
+| 读写文件 | 等磁盘 | `async`（或直接同步，通常够快） |
+| 大量数学计算 | 在算 | **不要 async**，它帮不上忙 |
+| 图片处理 | 在算 | 同上 |
+
+**async 不会让计算变快**，它只是让「等待」的时间被利用起来。
+
+### 可能卡在哪
+
+**在 `async def` 里调用了同步的阻塞函数**
+
+```python
+@app.get("/bad")
+async def 坏例子():
+    r = httpx.get("...")      # 同步调用！整个事件循环被卡住
+    return r.json()
+```
+
+**这比全部用同步还糟糕**，因为它会卡住整个服务器。要么全用异步版本，要么这个接口就写成 `def` 不写 `async def`。
+
+FastAPI 对普通 `def` 接口的处理是：**丢到线程池里跑**，不会阻塞主循环。所以「不确定的时候用 `def`」是安全的。
+
+**`await` 用在非协程上**
+
+```python
+result = await 普通函数()      # TypeError: object is not awaitable
+```
+
+只有 `async def` 定义的函数返回的东西才能 await。
+
+**忘了 await**
+
+```python
+r = client.get("...")          # 忘了 await
+print(r.json())                # AttributeError: 'coroutine' object has no attribute 'json'
+```
+
+看到 `coroutine object` 字样，第一反应就是「我漏了 await」。
+
+**RuntimeWarning: coroutine was never awaited**
+
+同样是漏了 await，Python 在提醒你「你创建了一个协程但从没执行它」。
+
+### 背后的逻辑
+
+**异步的本质是什么？**
+
+传统的多任务靠**多线程**：操作系统在多个线程间切换，切换时机由操作系统决定，你控制不了。
+
+异步靠**单线程 + 事件循环**：只有一个线程，但它维护一张「谁在等什么」的表。当你 `await` 一个网络请求时，这个协程被挂起、登记进表，事件循环去跑别的协程。网络数据回来时，事件循环再把它唤醒。
+
+关键区别：**切换点是你用 `await` 显式标出来的**。这意味着两个 `await` 之间的代码是不会被打断的，省掉了大量的锁和并发 bug。
+
+代价就是：**如果你在协程里干了一件不 await 的耗时事情，整个循环都会卡住**。这就是上面那个「坏例子」的问题。
+
+---
+
+## 完成判据
+
+**动手部分**：把 csvstats 包装成 API，至少 4 个端点：
+
+<checkbox done="false">`POST /uploads` 上传 CSV 文件，返回一个 upload_id</checkbox>
+<checkbox done="false">`GET /uploads/{id}/stats` 查询统计结果，支持查询参数指定分组列和数值列</checkbox>
+<checkbox done="false">`GET /uploads` 列出历史上传，支持分页</checkbox>
+<checkbox done="false">`DELETE /uploads/{id}` 删除</checkbox>
+
+要求：
+
+<checkbox done="false">每个端点都有 Pydantic 的请求和响应模型</checkbox>
+<checkbox done="false">用依赖注入处理「读配置」或「取上传记录」这类横切逻辑</checkbox>
+<checkbox done="false">自定义异常 + 统一的错误响应格式</checkbox>
+<checkbox done="false">调外部服务的地方用 `async def` + `await`</checkbox>
+<checkbox done="false">`/health` 端点</checkbox>
+
+**验证方式**：打开 `/docs`，把 4 个端点全部点着跑通，**包括故意传错参数看到 422 校验错误**。截图存进笔记。
+
+**理解检查**（笔记里回答）
+
+1. FastAPI 和 uvicorn 各负责什么？
+2. FastAPI 怎么区分路径参数、查询参数和请求体？
+3. `response_model` 除了生成文档还做了什么？
+4. 什么样的操作适合用 `async`，什么样的不适合？为什么？
+5. 在 `async def` 里调用同步的阻塞函数会发生什么？

@@ -11,7 +11,7 @@
 | 阶段 | 本地文档 | 飞书 |
 |---|---|---|
 | **S0 工程地基**（已细化到教程级） | [units/s0/](units/s0/README.md) · 9 个单元独立成篇 | 见下表 |
-| S1 LLM 基础与上下文工程 | [units/s1-LLM基础与上下文工程.md](units/s1-LLM基础与上下文工程.md) | [打开](https://dcnxpg5pruao.feishu.cn/docx/KEasd8eeIoABqNxT9WTcMyIwnAe) |
+| **S1 LLM 基础与上下文工程**（已细化到教程级） | [units/s1/](units/s1/README.md) · 8 个单元独立成篇 | 待同步 |
 | S2 Agent 核心 | [units/s2-Agent核心.md](units/s2-Agent核心.md) | [打开](https://dcnxpg5pruao.feishu.cn/docx/EW8mdQGhAoMyS2xqcO2cm18Qnxf) |
 | S3 评估与可观测性 | [units/s3-评估与可观测性.md](units/s3-评估与可观测性.md) | [打开](https://dcnxpg5pruao.feishu.cn/docx/ZggndoxVHoiUsSx4r33cPIr6nJg) |
 | S4 生产化 | [units/s4-生产化.md](units/s4-生产化.md) | [打开](https://dcnxpg5pruao.feishu.cn/docx/DG2Xdr7lqosKixxFUIBcXlwOnWb) |
@@ -39,8 +39,9 @@ ai-agent-roadmap/
 ├── templates/         # 单元笔记与周复盘模板
 ├── .vscode/           # VS Code 插件与设置
 ├── units/
-│   ├── s0/            # S0 每个单元一个文件，教程级细度
-│   └── s1..s6.md      # 其余阶段
+│   ├── s0/            # 9 个单元，教程级细度
+│   ├── s1/            # 8 个单元，教程级细度
+│   └── s2..s6.md      # 待细化
 ├── logs/              # 每周复盘
 ├── s0-foundation/     # 各阶段代码
 ├── s1-llm/
