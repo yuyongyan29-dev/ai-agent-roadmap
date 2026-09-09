@@ -10,13 +10,13 @@
 
 | 阶段 | 本地文档 | 飞书 |
 |---|---|---|
-| **S0 工程地基**（已细化到教程级） | [units/s0/](units/s0/README.md) · 9 个单元独立成篇 | 见下表 |
-| **S1 LLM 基础与上下文工程**（已细化到教程级） | [units/s1/](units/s1/README.md) · 8 个单元独立成篇 | 待同步 |
-| **S2 Agent 核心**（已细化到教程级） | [units/s2/](units/s2/README.md) · 8 个单元独立成篇 | 待同步 |
-| **S3 评估与可观测性**（已细化到教程级） | [units/s3/](units/s3/README.md) · 8 个单元独立成篇 | 待同步 |
-| **S4 生产化**（已细化到教程级） | [units/s4/](units/s4/README.md) · 8 个单元独立成篇 | 待同步 |
-| **S5 产品外壳**（已细化到教程级） | [units/s5/](units/s5/README.md) · 7 个单元独立成篇 | 待同步 |
-| **S6 平台基建与面试**（已细化到教程级） | [units/s6/](units/s6/README.md) · 6 个单元独立成篇 | 待同步 |
+| **S0 工程地基** | [units/s0/](units/s0/README.md) · 9 个单元 | [打开](https://dcnxpg5pruao.feishu.cn/docx/Cz1tdfwWQoE2e3xdAwTcd4gMntc) |
+| **S1 LLM 基础与上下文工程** | [units/s1/](units/s1/README.md) · 8 个单元 | [打开](https://dcnxpg5pruao.feishu.cn/docx/XNhHdGuluooLYIxW77icPDObnPH) |
+| **S2 Agent 核心** | [units/s2/](units/s2/README.md) · 8 个单元 | [打开](https://dcnxpg5pruao.feishu.cn/docx/LhQEdf8bao3QscxBV5bcf3YEnKg) |
+| **S3 评估与可观测性** | [units/s3/](units/s3/README.md) · 8 个单元 | [打开](https://dcnxpg5pruao.feishu.cn/docx/KtPTdlMMLoryUCx92rLc8IYxnjd) |
+| **S4 生产化** | [units/s4/](units/s4/README.md) · 8 个单元 | [打开](https://dcnxpg5pruao.feishu.cn/docx/EryudVmikoTYXfxfqL8cpl8RnCd) |
+| **S5 产品外壳** | [units/s5/](units/s5/README.md) · 7 个单元 | [打开](https://dcnxpg5pruao.feishu.cn/docx/HwAvdsE1NoxdV1xp2d3cQ4MWnVe) |
+| **S6 平台基建与面试** | [units/s6/](units/s6/README.md) · 6 个单元 | [打开](https://dcnxpg5pruao.feishu.cn/docx/A5kFdhiJKoqrxyxxuHLcp2Cenof) |
 
 ---
 
