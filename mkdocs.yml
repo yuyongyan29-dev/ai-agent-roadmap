@@ -1,4 +1,4 @@
-site_name: AI Agent 系统学习计划
+site_name: AI Agent 学习路线
 site_description: 零代码基础到生产级 Agent 工程师，37 周、65 个单元、每一步都有验收标准
 site_url: https://yuyongyan29-dev.github.io/ai-agent-roadmap/
 repo_url: https://github.com/yuyongyan29-dev/ai-agent-roadmap
@@ -58,8 +58,9 @@ markdown_extensions:
 
 nav:
   - 总览: index.md
-  - 从这里开始: 从这里开始.md
-  - 项目结构: 项目结构.md
+  - 开始: docs/开始.md
+  - 项目结构: docs/项目结构.md
+  - 周计划: docs/周计划.md
   - Stage 0 · 工程地基:
     - 阶段总览: units/s0/README.md
     - U0.1 · 命令行与开发环境: units/s0/U0.1-命令行与开发环境.md
@@ -132,10 +133,17 @@ nav:
     - U6.4 · A2A 与多 Agent 互操作: units/s6/U6.4-A2A与多Agent互操作.md
     - U6.5 · Mini Agent Runtime: units/s6/U6.5-MiniAgentRuntime.md
     - U6.6 · 作品集与面试准备: units/s6/U6.6-作品集与面试.md
-  - 扩展模块 B: 扩展模块-B.md
+  - 扩展模块 B: docs/扩展模块-B.md
+  - 参考:
+    - 技术栈: docs/技术栈.md
+    - 生产基本操作: docs/生产基本操作.md
+    - 资源: docs/资源.md
+    - 常见坑: docs/常见坑.md
+    - 算法笔试: docs/算法笔试.md
+    - 数据可靠性: docs/数据可靠性.md
   - 模板:
     - 单元笔记模板: templates/单元笔记模板.md
     - 周复盘模板: templates/周复盘模板.md
     - 周复盘怎么写: logs/README.md
-  - 同步到飞书: docs/同步到飞书.md
+    - 同步到飞书: docs/同步到飞书.md
   - 参与贡献: CONTRIBUTING.md

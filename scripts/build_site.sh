@@ -9,7 +9,7 @@ mkdir -p _site_src
 
 # 根目录的文档。README 改名 index，成为站点首页
 cp README.md _site_src/index.md
-for f in 从这里开始.md 项目结构.md 扩展模块-B.md CONTRIBUTING.md; do
+for f in CONTRIBUTING.md; do
   [ -f "$f" ] && cp "$f" _site_src/
 done
 cp LICENSE _site_src/LICENSE.md
