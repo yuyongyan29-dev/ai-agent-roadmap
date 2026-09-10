@@ -1,5 +1,5 @@
 site_name: AI Agent 学习路线
-site_description: 零代码基础到生产级 Agent 工程师，37 周、65 个单元、每一步都有验收标准
+site_description: 零代码基础到生产级 Agent 工程师，38 周、61 个单元、代码由 agent 写、每一步都有验收标准
 site_url: https://yuyongyan29-dev.github.io/ai-agent-roadmap/
 repo_url: https://github.com/yuyongyan29-dev/ai-agent-roadmap
 repo_name: ai-agent-roadmap
@@ -63,18 +63,19 @@ nav:
   - 周计划: docs/周计划.md
   - Stage 0 · 工程地基:
     - 阶段总览: units/s0/README.md
+    - U0.0 · 你的工作方式：agent 写、你审、你验: units/s0/U0.0-你的工作方式.md
     - U0.1 · 命令行与开发环境: units/s0/U0.1-命令行与开发环境.md
     - U0.2 · Git 与 GitHub: units/s0/U0.2-Git与GitHub.md
-    - U0.3 · Python 语法基础: units/s0/U0.3-Python语法基础.md
+    - U0.3 · Python：能读、能判、能调: units/s0/U0.3-Python语法基础.md
     - U0.4 · Python 工程化: units/s0/U0.4-Python工程化.md
     - U0.5 · HTTP 与 API: units/s0/U0.5-HTTP与API.md
     - U0.6 · FastAPI 写服务: units/s0/U0.6-FastAPI写服务.md
     - U0.7 · 测试: units/s0/U0.7-测试.md
     - U0.8 · 数据库: units/s0/U0.8-数据库.md
     - U0.9 · Docker: units/s0/U0.9-Docker.md
-    - U0.10 · 与编码 Agent 协作: units/s0/U0.10-与编码Agent协作.md
     - U0.11 · Redis 与缓存: units/s0/U0.11-Redis与缓存.md
     - U0.12 · Git 分支与 worktree 实战: units/s0/U0.12-Git分支与worktree实战.md
+    - U0.10 · 与编码 Agent 协作：完整工作流: units/s0/U0.10-与编码Agent协作.md
   - Stage 1 · LLM 基础与上下文工程:
     - 阶段总览: units/s1/README.md
     - U1.1 · LLM 工作原理（工程视角）: units/s1/U1.1-LLM工作原理.md
@@ -116,15 +117,17 @@ nav:
     - U4.6 · 灰度与回滚: units/s4/U4.6-灰度与回滚.md
     - U4.7 · 部署上线: units/s4/U4.7-部署上线.md
     - U4.8 · SLO 与 Runbook: units/s4/U4.8-SLO与Runbook.md
-  - Stage 5 · 产品外壳：网站 / App / 小程序:
+  - Stage 5 · 产品外壳：Web / 小程序 / App:
     - 阶段总览: units/s5/README.md
+    - U5.0 · 三端技术栈怎么选: units/s5/U5.0-三端技术栈怎么选.md
     - U5.1 · TypeScript 基础: units/s5/U5.1-TypeScript基础.md
     - U5.2 · 前端基础与 React: units/s5/U5.2-前端基础与React.md
     - U5.3 · Next.js App Router: units/s5/U5.3-NextJS.md
     - U5.4 · Vercel AI SDK 与流式界面: units/s5/U5.4-流式界面.md
     - U5.5 · 认证与数据: units/s5/U5.5-认证与数据.md
     - U5.6 · 小程序: units/s5/U5.6-小程序.md
-    - U5.7 · 上线与打磨: units/s5/U5.7-上线与打磨.md
+    - U5.8 · App 与 Expo: units/s5/U5.8-App与Expo.md
+    - U5.7 · 三端上线与部署矩阵: units/s5/U5.7-上线与打磨.md
   - Stage 6 · 平台与基建 + 面试准备:
     - 阶段总览: units/s6/README.md
     - U6.1 · 拆解主流 Agent 平台: units/s6/U6.1-拆解Agent平台.md
@@ -141,9 +144,9 @@ nav:
     - 常见坑: docs/常见坑.md
     - 算法笔试: docs/算法笔试.md
     - 数据可靠性: docs/数据可靠性.md
+    - 同步到飞书: docs/同步到飞书.md
   - 模板:
     - 单元笔记模板: templates/单元笔记模板.md
     - 周复盘模板: templates/周复盘模板.md
     - 周复盘怎么写: logs/README.md
-    - 同步到飞书: docs/同步到飞书.md
   - 参与贡献: CONTRIBUTING.md
