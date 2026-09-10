@@ -2,26 +2,39 @@
 
 > 版本：2026-09-10 · 主线 37 周 · 每周 20 小时（其中 16 小时用在单元上）· 单元总时长 602 小时
 > 路径：**A 主线**（AI 应用 / Agent 工程师 / 创业全栈）+ **B 扩展模块**（大厂平台基建，可激活）
-> 飞书文档：https://dcnxpg5pruao.feishu.cn/docx/HEKGdkG7EofGpgx3NwScJt70nbf
 > 目标：独立做 Agent 应用 + 看懂并参与 Agent 平台基建 + 能在业务里落地 + 能拿去面试 + 顺带能做网站/App/小程序
 
-**第一次打开？先读 [`从这里开始.md`](从这里开始.md)**（[飞书版](https://dcnxpg5pruao.feishu.cn/docx/JgSPd46vBobhH7xBLZkcYQvZnwb)）—— VS Code 配置、每个单元的固定五步、前三天的具体清单。
+**这是什么**：一份从零代码基础开始、以 2026 年国内外真实招聘 JD 为依据倒推出来的 AI Agent 工程师学习路线。65 个单元，每个单元都有可运行的代码、实测过的输出和明确的完成判据。**不是资源清单，是一份照着做的施工图。**
+
+**给谁**：想转行做 AI 应用 / Agent 工程师，愿意每周投入 20 小时、持续大半年的人。有编程基础的人可以从 S1 开始，S0 只做完成判据。
+
+**怎么开始**：
+
+```bash
+# 1. 点右上角 Fork，把它变成你自己的仓库（进度勾选和笔记都会提交到你的 fork 里）
+# 2. clone 你的 fork。本教程假设放在 ~/ai-agent-roadmap，放别处就把路径换成你的
+git clone https://github.com/<你的用户名>/ai-agent-roadmap.git ~/ai-agent-roadmap
+cd ~/ai-agent-roadmap
+code .
+```
+
+然后读 [`从这里开始.md`](从这里开始.md)——VS Code 配置、每个单元的固定五步、前三天的具体清单。**Windows 用户先看 [U0.1 开头的 WSL2 说明](units/s0/U0.1-命令行与开发环境.md)。**
 
 **路径选择**：主线走 A，[`扩展模块-B.md`](扩展模块-B.md) 是可激活的大厂平台基建扩展，里面写清了什么时候用什么数据来判断要不要开。
 
-**七个阶段的项目怎么互相引用？** 见 [`项目结构.md`](项目结构.md)（[飞书版](https://dcnxpg5pruao.feishu.cn/docx/RyY1dimYxonwLWxiFAMccaRPnwe)）—— uv workspace、跨阶段依赖、csvstats 怎么承接。
+**七个阶段的项目怎么互相引用？** 见 [`项目结构.md`](项目结构.md)—— uv workspace、跨阶段依赖、csvstats 怎么承接。
 
-**每个单元的详细拆解在 [`units/`](units/) 目录**，本文件是总览和索引。
+**每个单元的详细拆解在 [`units/`](units/) 目录**，本文件是总览和索引。也可以看[网页版](https://yuyongyan29-dev.github.io/ai-agent-roadmap/)，带目录树和全文搜索。
 
-| 阶段 | 本地文档 | 飞书 |
+| 阶段 | 文档 | 单元数 |
 |---|---|---|
-| **S0 工程地基** | [units/s0/](units/s0/README.md) · 12 个单元 | [打开](https://dcnxpg5pruao.feishu.cn/docx/Cz1tdfwWQoE2e3xdAwTcd4gMntc) |
-| **S1 LLM 基础与上下文工程** | [units/s1/](units/s1/README.md) · 8 个单元 | [打开](https://dcnxpg5pruao.feishu.cn/docx/XNhHdGuluooLYIxW77icPDObnPH) |
-| **S2 Agent 核心** | [units/s2/](units/s2/README.md) · 8 个单元 | [打开](https://dcnxpg5pruao.feishu.cn/docx/LhQEdf8bao3QscxBV5bcf3YEnKg) |
-| **S3 评估与可观测性** | [units/s3/](units/s3/README.md) · 8 个单元 | [打开](https://dcnxpg5pruao.feishu.cn/docx/KtPTdlMMLoryUCx92rLc8IYxnjd) |
-| **S4 生产化** | [units/s4/](units/s4/README.md) · 8 个单元 | [打开](https://dcnxpg5pruao.feishu.cn/docx/EryudVmikoTYXfxfqL8cpl8RnCd) |
-| **S5 产品外壳** | [units/s5/](units/s5/README.md) · 7 个单元 | [打开](https://dcnxpg5pruao.feishu.cn/docx/HwAvdsE1NoxdV1xp2d3cQ4MWnVe) |
-| **S6 平台基建与面试** | [units/s6/](units/s6/README.md) · 6 个单元 | [打开](https://dcnxpg5pruao.feishu.cn/docx/A5kFdhiJKoqrxyxxuHLcp2Cenof) |
+| **S0 工程地基** | [units/s0/](units/s0/README.md) | 12 |
+| **S1 LLM 基础与上下文工程** | [units/s1/](units/s1/README.md) | 8 |
+| **S2 Agent 核心** | [units/s2/](units/s2/README.md) | 8 |
+| **S3 评估与可观测性** | [units/s3/](units/s3/README.md) | 8 |
+| **S4 生产化** | [units/s4/](units/s4/README.md) | 9 |
+| **S5 产品外壳** | [units/s5/](units/s5/README.md) | 7 |
+| **S6 平台基建与面试** | [units/s6/](units/s6/README.md) | 6 |
 
 ---
 
@@ -339,3 +352,11 @@ S2 前两周不用任何框架，自己写 ReAct 循环——不这样做，你�
 - 各类「rerank 提升 15–30%」的通用数字
 
 这些都来自搜索引擎里的 SEO 内容农场，看起来专业但查不到源头。**本计划的处理方式是：凡是要用数字支撑的判断，都改成让你在自己的项目上实测。** 别人的数字对你的语料和场景不成立，你自己测出来的才算数——这本身也是 S3 要教的东西。
+
+---
+
+## 10. 许可与贡献
+
+- 文档（所有 `.md`）采用 [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.zh-hans)：可以自由转载、改编、用于教学，注明来源即可。
+- 代码片段与脚本（`scripts/`、文档中的代码块）采用 [MIT](LICENSE)。
+- 发现版本号过期、链接失效、数据存疑或步骤跑不通，请按 [`CONTRIBUTING.md`](CONTRIBUTING.md) 提 issue 或 PR。**附一手来源**是唯一的硬要求。

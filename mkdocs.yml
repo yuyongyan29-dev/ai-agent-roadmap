@@ -1,0 +1,141 @@
+site_name: AI Agent 系统学习计划
+site_description: 零代码基础到生产级 Agent 工程师，37 周、65 个单元、每一步都有验收标准
+site_url: https://yuyongyan29-dev.github.io/ai-agent-roadmap/
+repo_url: https://github.com/yuyongyan29-dev/ai-agent-roadmap
+repo_name: ai-agent-roadmap
+edit_uri: edit/main/
+docs_dir: _site_src
+copyright: 文档 CC BY 4.0 · 代码 MIT
+
+theme:
+  name: material
+  language: zh
+  features:
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - navigation.footer
+    - toc.follow
+    - search.highlight
+    - search.suggest
+    - content.code.copy
+    - content.action.edit
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: 切换到深色
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: 切换到浅色
+
+plugins:
+  - search:
+      lang: zh
+
+markdown_extensions:
+  - tables
+  - attr_list
+  - md_in_html
+  - admonition
+  - toc:
+      permalink: true
+      toc_depth: 3
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.details
+
+nav:
+  - 总览: index.md
+  - 从这里开始: 从这里开始.md
+  - 项目结构: 项目结构.md
+  - Stage 0 · 工程地基:
+    - 阶段总览: units/s0/README.md
+    - U0.1 · 命令行与开发环境: units/s0/U0.1-命令行与开发环境.md
+    - U0.2 · Git 与 GitHub: units/s0/U0.2-Git与GitHub.md
+    - U0.3 · Python 语法基础: units/s0/U0.3-Python语法基础.md
+    - U0.4 · Python 工程化: units/s0/U0.4-Python工程化.md
+    - U0.5 · HTTP 与 API: units/s0/U0.5-HTTP与API.md
+    - U0.6 · FastAPI 写服务: units/s0/U0.6-FastAPI写服务.md
+    - U0.7 · 测试: units/s0/U0.7-测试.md
+    - U0.8 · 数据库: units/s0/U0.8-数据库.md
+    - U0.9 · Docker: units/s0/U0.9-Docker.md
+    - U0.10 · 与编码 Agent 协作: units/s0/U0.10-与编码Agent协作.md
+    - U0.11 · Redis 与缓存: units/s0/U0.11-Redis与缓存.md
+    - U0.12 · Git 分支与 worktree 实战: units/s0/U0.12-Git分支与worktree实战.md
+  - Stage 1 · LLM 基础与上下文工程:
+    - 阶段总览: units/s1/README.md
+    - U1.1 · LLM 工作原理（工程视角）: units/s1/U1.1-LLM工作原理.md
+    - U1.2 · 多家模型 API 接入: units/s1/U1.2-多家模型API接入.md
+    - U1.3 · 结构化输出: units/s1/U1.3-结构化输出.md
+    - U1.4 · Prompt 工程: units/s1/U1.4-Prompt工程.md
+    - U1.5 · 上下文工程: units/s1/U1.5-上下文工程.md
+    - U1.6 · 成本、延迟与流式: units/s1/U1.6-成本延迟与流式.md
+    - U1.7 · 本地模型: units/s1/U1.7-本地模型.md
+    - U1.8 · 整理与选题: units/s1/U1.8-整理与选题.md
+  - Stage 2 · Agent 核心:
+    - 阶段总览: units/s2/README.md
+    - U2.1 · 手写 Agent 循环: units/s2/U2.1-手写Agent循环.md
+    - U2.2 · 工具设计: units/s2/U2.2-工具设计.md
+    - U2.3 · 规划与反思: units/s2/U2.3-规划与反思.md
+    - U2.4 · 记忆系统: units/s2/U2.4-记忆系统.md
+    - U2.5 · RAG 与混合检索: units/s2/U2.5-RAG与混合检索.md
+    - U2.6 · 多 Agent 编排: units/s2/U2.6-多Agent编排.md
+    - U2.7 · MCP 实战: units/s2/U2.7-MCP实战.md
+    - U2.8 · 框架横评: units/s2/U2.8-框架横评.md
+  - Stage 3 · 评估与可观测性:
+    - 阶段总览: units/s3/README.md
+    - U3.1 · 评估的思维框架: units/s3/U3.1-评估的思维框架.md
+    - U3.2 · 构建评估集: units/s3/U3.2-构建评估集.md
+    - U3.3 · 代码型评分器: units/s3/U3.3-代码型评分器.md
+    - U3.4 · 模型型评分器（LLM-as-judge）: units/s3/U3.4-LLM评分器.md
+    - U3.5 · Trace 与可观测性: units/s3/U3.5-Trace与可观测性.md
+    - U3.6 · 在线评估与数据回流: units/s3/U3.6-在线评估与数据回流.md
+    - U3.7 · 评估进 CI: units/s3/U3.7-评估进CI.md
+    - U3.8 · 成本与延迟看板: units/s3/U3.8-成本与延迟看板.md
+  - Stage 4 · 生产化:
+    - 阶段总览: units/s4/README.md
+    - U4.0 · Linux 服务器与线上排查: units/s4/U4.0-Linux服务器与线上排查.md
+    - U4.1 · 12-Factor 自查: units/s4/U4.1-12Factor自查.md
+    - U4.2 · 状态与持久化: units/s4/U4.2-状态与持久化.md
+    - U4.3 · 长任务架构: units/s4/U4.3-长任务架构.md
+    - U4.4 · 安全与权限: units/s4/U4.4-安全与权限.md
+    - U4.5 · 成本治理: units/s4/U4.5-成本治理.md
+    - U4.6 · 灰度与回滚: units/s4/U4.6-灰度与回滚.md
+    - U4.7 · 部署上线: units/s4/U4.7-部署上线.md
+    - U4.8 · SLO 与 Runbook: units/s4/U4.8-SLO与Runbook.md
+  - Stage 5 · 产品外壳：网站 / App / 小程序:
+    - 阶段总览: units/s5/README.md
+    - U5.1 · TypeScript 基础: units/s5/U5.1-TypeScript基础.md
+    - U5.2 · 前端基础与 React: units/s5/U5.2-前端基础与React.md
+    - U5.3 · Next.js App Router: units/s5/U5.3-NextJS.md
+    - U5.4 · Vercel AI SDK 与流式界面: units/s5/U5.4-流式界面.md
+    - U5.5 · 认证与数据: units/s5/U5.5-认证与数据.md
+    - U5.6 · 小程序: units/s5/U5.6-小程序.md
+    - U5.7 · 上线与打磨: units/s5/U5.7-上线与打磨.md
+  - Stage 6 · 平台与基建 + 面试准备:
+    - 阶段总览: units/s6/README.md
+    - U6.1 · 拆解主流 Agent 平台: units/s6/U6.1-拆解Agent平台.md
+    - U6.2 · 编排引擎设计: units/s6/U6.2-编排引擎设计.md
+    - U6.3 · 沙箱与执行环境: units/s6/U6.3-沙箱与执行环境.md
+    - U6.4 · A2A 与多 Agent 互操作: units/s6/U6.4-A2A与多Agent互操作.md
+    - U6.5 · Mini Agent Runtime: units/s6/U6.5-MiniAgentRuntime.md
+    - U6.6 · 作品集与面试准备: units/s6/U6.6-作品集与面试.md
+  - 扩展模块 B: 扩展模块-B.md
+  - 模板:
+    - 单元笔记模板: templates/单元笔记模板.md
+    - 周复盘模板: templates/周复盘模板.md
+    - 周复盘怎么写: logs/README.md
+  - 同步到飞书: docs/同步到飞书.md
+  - 参与贡献: CONTRIBUTING.md

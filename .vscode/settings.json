@@ -1,0 +1,25 @@
+{
+  "editor.formatOnSave": true,
+  "editor.rulers": [88],
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.codeActionsOnSave": { "source.organizeImports.ruff": "explicit" }
+  },
+  "python.analysis.typeCheckingMode": "standard",
+  "python.testing.pytestEnabled": true,
+  "python.testing.pytestArgs": ["."],
+
+  "[markdown]": { "editor.wordWrap": "on", "editor.quickSuggestions": { "other": true } },
+
+  "todo-tree.general.tags": ["TODO", "FIXME", "卡点", "判据"],
+  "errorLens.enabledDiagnosticLevels": ["error", "warning"],
+
+  "files.exclude": {
+    "**/__pycache__": true,
+    "**/.pytest_cache": true,
+    "**/.ruff_cache": true
+  }
+}

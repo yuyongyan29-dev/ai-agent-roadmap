@@ -7,6 +7,12 @@ __pycache__/
 venv/
 node_modules/
 .idea/
-.vscode/
 _c_*.md
 _fs_*.md
+
+# 文档站构建产物
+site/
+_site_src/
+
+# 飞书同步的临时产物
+_stage_*.md
