@@ -1,5 +1,5 @@
 site_name: AI Agent 学习路线
-site_description: 零代码基础到生产级 Agent 工程师，38 周、61 个单元、代码由 agent 写、每一步都有验收标准
+site_description: 零代码基础到生产级 Agent 工程师，39 周、62 个单元、代码由 agent 写、每一步都有验收标准
 site_url: https://yuyongyan29-dev.github.io/ai-agent-roadmap/
 repo_url: https://github.com/yuyongyan29-dev/ai-agent-roadmap
 repo_name: ai-agent-roadmap
@@ -108,13 +108,14 @@ nav:
     - U3.8 · 成本与延迟看板: units/s3/U3.8-成本与延迟看板.md
   - Stage 4 · 生产化:
     - 阶段总览: units/s4/README.md
-    - U4.0 · Linux 服务器与线上排查: units/s4/U4.0-Linux服务器与线上排查.md
     - U4.1 · 12-Factor 自查: units/s4/U4.1-12Factor自查.md
     - U4.2 · 状态与持久化: units/s4/U4.2-状态与持久化.md
     - U4.3 · 长任务架构: units/s4/U4.3-长任务架构.md
     - U4.4 · 安全与权限: units/s4/U4.4-安全与权限.md
     - U4.5 · 成本治理: units/s4/U4.5-成本治理.md
     - U4.6 · 灰度与回滚: units/s4/U4.6-灰度与回滚.md
+    - U4.0 · Linux 服务器与线上排查: units/s4/U4.0-Linux服务器与线上排查.md
+    - U4.9 · 基础设施实操：镜像仓库、HTTPS、托管数据库与备份、对象存储: units/s4/U4.9-基础设施实操.md
     - U4.7 · 部署上线: units/s4/U4.7-部署上线.md
     - U4.8 · SLO 与 Runbook: units/s4/U4.8-SLO与Runbook.md
   - Stage 5 · 产品外壳：Web / 小程序 / App:
@@ -139,6 +140,7 @@ nav:
   - 扩展模块 B: docs/扩展模块-B.md
   - 参考:
     - 技术栈: docs/技术栈.md
+    - 选型地图: docs/选型地图.md
     - 生产基本操作: docs/生产基本操作.md
     - 资源: docs/资源.md
     - 常见坑: docs/常见坑.md
