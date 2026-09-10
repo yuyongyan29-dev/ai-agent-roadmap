@@ -1,0 +1,4 @@
+[
+  {"note_id": "n1", "source": "fixtures/notes.json#n1", "text": "店员 A 的一篇操作演示笔记收到 3 条咨询；没有成交数据。"},
+  {"note_id": "n2", "source": "fixtures/notes.json#n2", "text": "店员 B 的一篇参数介绍笔记收到 1 条咨询；两篇的发布时间和曝光数未知。"}
+]

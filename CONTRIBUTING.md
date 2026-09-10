@@ -43,13 +43,15 @@
 
 ## 时长核算
 
-改动任何单元的时长，要同步改三处：单元文件标题、该阶段的 `units/sX/README.md` 表格、根目录 `README.md` 的阶段表和周次表。根 README 里有一段解释总时长和周数的换算，改完确认它还成立。
+改动任何单元的时长，要同步单元标题、阶段 `units/sX/README.md`、根 `README.md` 和 `docs/周计划.md`。周计划中括号表示本周投入，同一个单元可跨周，累计必须等于标题课时；每周单元学习不超过 16h，复盘另留 4h。运行 `python3 scripts/check_curriculum.py` 检查目录、课时和排期是否一致。
 
 ## 本地预览网页版
 
 ```bash
 pip install -r requirements-docs.txt
 bash scripts/build_site.sh
+python3 scripts/check_curriculum.py
+mkdocs build --strict
 mkdocs serve
 ```
 

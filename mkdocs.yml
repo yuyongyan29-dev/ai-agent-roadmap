@@ -1,10 +1,21 @@
 site_name: AI Agent 学习路线
-site_description: 零代码基础到生产级 Agent 工程师，39 周、62 个单元、代码由 agent 写、每一步都有验收标准
+site_description: 零代码基础到生产级 Agent 工程师，39 周、65 个单元、代码由 agent 写、每一步都有验收标准
 site_url: https://yuyongyan29-dev.github.io/ai-agent-roadmap/
 repo_url: https://github.com/yuyongyan29-dev/ai-agent-roadmap
 repo_name: ai-agent-roadmap
 edit_uri: edit/main/
 docs_dir: _site_src
+exclude_docs: |
+  !/templates/
+  !/examples/**/.claude-plugin/
+not_in_nav: |
+  /examples/
+validation:
+  nav:
+    omitted_files: warn
+  links:
+    not_found: warn
+    unrecognized_links: warn
 copyright: 文档 CC BY 4.0 · 代码 MIT
 
 theme:
@@ -86,6 +97,7 @@ nav:
     - U1.6 · 成本、延迟与流式: units/s1/U1.6-成本延迟与流式.md
     - U1.7 · 本地模型: units/s1/U1.7-本地模型.md
     - U1.8 · 整理与选题: units/s1/U1.8-整理与选题.md
+    - U1.9 · 需求发现与规格化: units/s1/U1.9-需求发现与规格化.md
   - Stage 2 · Agent 核心:
     - 阶段总览: units/s2/README.md
     - U2.1 · 手写 Agent 循环: units/s2/U2.1-手写Agent循环.md
@@ -95,6 +107,8 @@ nav:
     - U2.5 · RAG 与混合检索: units/s2/U2.5-RAG与混合检索.md
     - U2.6 · 多 Agent 编排: units/s2/U2.6-多Agent编排.md
     - U2.7 · MCP 实战: units/s2/U2.7-MCP实战.md
+    - U2.9 · Skill 与 Plugin: units/s2/U2.9-Skill与Plugin.md
+    - U2.10 · 企业系统集成: units/s2/U2.10-企业系统集成.md
     - U2.8 · 框架横评: units/s2/U2.8-框架横评.md
   - Stage 3 · 评估与可观测性:
     - 阶段总览: units/s3/README.md
@@ -136,9 +150,10 @@ nav:
     - U6.3 · 沙箱与执行环境: units/s6/U6.3-沙箱与执行环境.md
     - U6.4 · A2A 与多 Agent 互操作: units/s6/U6.4-A2A与多Agent互操作.md
     - U6.5 · Mini Agent Runtime: units/s6/U6.5-MiniAgentRuntime.md
-    - U6.6 · 作品集与面试准备: units/s6/U6.6-作品集与面试.md
+    - U6.6 · 作品集、简历与面试准备: units/s6/U6.6-作品集与面试.md
   - 扩展模块 B: docs/扩展模块-B.md
   - 参考:
+    - 实操示例: examples/README.md
     - 技术栈: docs/技术栈.md
     - 选型地图: docs/选型地图.md
     - 生产基本操作: docs/生产基本操作.md
@@ -149,6 +164,9 @@ nav:
     - 同步到飞书: docs/同步到飞书.md
   - 模板:
     - 单元笔记模板: templates/单元笔记模板.md
+    - 需求规格模板: templates/需求规格模板.md
+    - 里程碑对外说明模板: templates/里程碑对外说明模板.md
+    - 投递记录模板: templates/投递记录模板.md
     - 周复盘模板: templates/周复盘模板.md
     - 周复盘怎么写: logs/README.md
   - 参与贡献: CONTRIBUTING.md

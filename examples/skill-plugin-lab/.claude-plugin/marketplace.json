@@ -1,0 +1,10 @@
+{
+  "name": "roadmap-local",
+  "description": "AI Agent 学习路线图的本地 Skill 分发练习",
+  "owner": {"name": "you"},
+  "plugins": [{
+    "name": "agent-workbench",
+    "source": "./plugins/agent-workbench",
+    "description": "主线 Agent 的证据简报和检索回归检查"
+  }]
+}

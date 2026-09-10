@@ -12,10 +12,13 @@ cp README.md _site_src/index.md
 for f in CONTRIBUTING.md; do
   [ -f "$f" ] && cp "$f" _site_src/
 done
-cp LICENSE _site_src/LICENSE.md
+cp LICENSE _site_src/LICENSE
 
 # 目录整体拷贝
 cp -R units templates docs _site_src/
+if [ -d examples ]; then
+  cp -R examples _site_src/
+fi
 mkdir -p _site_src/logs && cp logs/README.md _site_src/logs/
 
 echo "已生成 _site_src/，共 $(find _site_src -name '*.md' | wc -l | tr -d ' ') 个页面"

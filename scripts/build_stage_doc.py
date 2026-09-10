@@ -20,17 +20,16 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 
 
-def unit_number(path: Path) -> int:
-    """从 U0.10-xxx.md 里取出 10，用来按数字而不是字典序排序。"""
-    m = re.search(r"U\d+\.(\d+)", path.name)
-    return int(m.group(1)) if m else -1
-
-
 def stage_files(stage: str) -> list[Path]:
     d = ROOT / "units" / stage
     if not d.is_dir():
         sys.exit(f"找不到阶段目录：{d}")
-    units = sorted(d.glob("U*.md"), key=unit_number)
+    # 编号不是学习顺序：例如 U2.9/U2.10 要先于最终横评 U2.8。
+    readme = d / "README.md"
+    links = re.findall(r"^\| \[U\d+\.\d+[^\]]*\]\(([^)]+)\)", readme.read_text(), re.M)
+    units = [d / link for link in links]
+    if len(units) != len(set(units)) or set(units) != set(d.glob("U*.md")):
+        sys.exit(f"{readme} 的单元目录缺失或重复，请先修复目录")
     return [d / "README.md", *units]
 
 

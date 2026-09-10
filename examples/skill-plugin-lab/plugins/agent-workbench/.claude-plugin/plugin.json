@@ -1,0 +1,6 @@
+{
+  "name": "agent-workbench",
+  "version": "0.1.0",
+  "description": "把检索结果写成有来源的简报，并比较两轮检索结果。",
+  "author": {"name": "you"}
+}

@@ -1,0 +1,17 @@
+services:
+  rabbit:
+    # 实验入口：启动后记录实际版本和 digest；复现时把镜像固定到该 digest。
+    image: rabbitmq:4-management
+    ports:
+      - "127.0.0.1:5672:5672"
+      - "127.0.0.1:15672:15672"
+    volumes:
+      - rabbit_lab_data:/var/lib/rabbitmq
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+volumes:
+  rabbit_lab_data:
